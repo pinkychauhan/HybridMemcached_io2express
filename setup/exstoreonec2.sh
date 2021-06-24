@@ -1,36 +1,22 @@
-curl -s https://api.github.com/repos/libevent/libevent/releases/latest | grep browser_download_url | grep stable.tar.gz |  cut -d '"' -f 4 |  wget -i -
-tar xvf libevent-*-stable.tar.gz
-cd libevent-*/
-./configure
-make
-sudo make install
+#Install build dependencies using yum commands below
+sudo yum -y install '@Development Tools' openssl-devel libevent-devel
 
-# Create symlink of  libevent kernel library.
-sudo ln -s /usr/lib/libevent-<ver>.so.7 /usr/lib64/libevent-<ver>.so.7
-
-Download the latest Memcached release source code.
-
+#Download the latest Memcached release source code.
 wget https://memcached.org/latest -O memcached-latest.tar.gz
-Once the file is downloaded extract it with tar command line tool.
 
+#Once the file is downloaded extract it with tar command line tool.
 tar xvf memcached-latest.tar.gz
-Extract the downloaded archive file.
 
 cd memcached-*/
 
-Run configuration command:
-
-./configure
-Make and install.
-
-Extstore built by default in 1.6.0 and higher
+#Run configuration command (Extstore built by default in 1.6.0 and higher)
 ./configure --prefix=/usr/local/memcached --enable-extstore
 make
 make test
 sudo make install
 
-Step 3: Configure Systemd service file
-Create Memcached systemd environment configuration file:
+#Configure Systemd service file
+#Create Memcached systemd environment configuration file:
 
 sudo tee /etc/sysconfig/memcached <<EOF
 # These defaults will be used by every memcached instance, unless overridden
@@ -44,10 +30,11 @@ OPTIONS=""
 # memcached@xxxxx services, which will use the xxxxx
 PORT="11211"
 EOF
-Create new Memcached Systemd unit file.
 
+#Create new Memcached Systemd unit file.
 sudo vim /etc/systemd/system/memcached.service
-Paste below contents:
+
+#Paste below contents:
 
 [Unit]
 Description=memcached daemon
@@ -65,10 +52,10 @@ RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 
 [Install]
 WantedBy=multi-user.target
-Reload Systemd.
 
+#Reload Systemd.
 sudo systemctl daemon-reload
-Start Systemd service.
 
+#Start Systemd service.
 $ sudo systemctl status memcached -l
 
