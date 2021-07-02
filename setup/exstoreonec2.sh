@@ -10,9 +10,8 @@ tar xvf memcached-latest.tar.gz
 cd memcached-*/
 
 #Run configuration command (Extstore built by default in 1.6.0 and higher)
-./configure --prefix=/usr/local/memcached --enable-extstore
+sudo ./configure  --prefix=/usr/local/memcached
 make
-make test
 sudo make install
 
 #Configure Systemd service file
@@ -21,11 +20,10 @@ sudo make install
 sudo tee /etc/sysconfig/memcached <<EOF
 # These defaults will be used by every memcached instance, unless overridden
 # by values in /etc/sysconfig/memcached.<port>
-USER="nobody"
+USER="ec2-user"
 MAXCONN="1024"
-CACHESIZE="64"
-OPTIONS=""
-
+CACHESIZE="4"
+OPTIONS="-o ext_path=/home/ec2-user/datafile:2G"
 # The PORT variable will only be used by memcached.service, not by
 # memcached@xxxxx services, which will use the xxxxx
 PORT="11211"
@@ -57,5 +55,7 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 
 #Start Systemd service.
-$ sudo systemctl status memcached -l
+sudo systemctl start memcached
+
+sudo systemctl status memcached
 
