@@ -1,8 +1,11 @@
+sudo yum -y update
+cd /opt
+
 #Install build dependencies using yum commands below
 sudo yum -y install '@Development Tools' openssl-devel libevent-devel
 
 #Download the latest Memcached release source code.
-wget https://memcached.org/latest -O memcached-latest.tar.gz
+sudo wget https://memcached.org/latest -O memcached-latest.tar.gz
 
 #Once the file is downloaded extract it with tar command line tool.
 tar xvf memcached-latest.tar.gz
@@ -10,20 +13,24 @@ tar xvf memcached-latest.tar.gz
 cd memcached-*/
 
 #Run configuration command (Extstore built by default in 1.6.0 and higher)
-sudo ./configure  --prefix=/usr/local/memcached
-make
+sudo ./configure
+sudo make
 sudo make install
+
+#Create storage for memcached extstore
+mkdir storage
+#Use chmod/chown to change permissions if needed
 
 #Configure Systemd service file
 #Create Memcached systemd environment configuration file:
-
+#We can customize memory/exstore config here
 sudo tee /etc/sysconfig/memcached <<EOF
 # These defaults will be used by every memcached instance, unless overridden
 # by values in /etc/sysconfig/memcached.<port>
 USER="ec2-user"
 MAXCONN="1024"
 CACHESIZE="4"
-OPTIONS="-o ext_path=/home/ec2-user/datafile:2G"
+OPTIONS="-o ext_path=/storage/datafile:2G"
 # The PORT variable will only be used by memcached.service, not by
 # memcached@xxxxx services, which will use the xxxxx
 PORT="11211"
@@ -51,6 +58,7 @@ RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 [Install]
 WantedBy=multi-user.target
 
+
 #Reload Systemd.
 sudo systemctl daemon-reload
 
@@ -58,4 +66,5 @@ sudo systemctl daemon-reload
 sudo systemctl start memcached
 
 sudo systemctl status memcached
+
 
