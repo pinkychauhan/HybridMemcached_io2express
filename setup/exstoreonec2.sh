@@ -1,4 +1,14 @@
-sudo yum -y update
+sudo su
+yum -y update
+
+cd /
+mkdir storage
+lsblk
+mkfs.ext4 /dev/nvme1n1
+mount /dev/nvme1n1 storage
+
+chown ec2-user storage
+
 cd /opt
 
 #Install build dependencies using yum commands below
@@ -17,10 +27,6 @@ sudo ./configure
 sudo make
 sudo make install
 
-#Create storage for memcached extstore
-mkdir storage
-#Use chmod/chown to change permissions if needed
-
 #Configure Systemd service file
 #Create Memcached systemd environment configuration file:
 #We can customize memory/exstore config here
@@ -28,9 +34,9 @@ sudo tee /etc/sysconfig/memcached <<EOF
 # These defaults will be used by every memcached instance, unless overridden
 # by values in /etc/sysconfig/memcached.<port>
 USER="ec2-user"
-MAXCONN="1024"
-CACHESIZE="4"
-OPTIONS="-o ext_path=/storage/datafile:2G"
+MAXCONN="65000"
+CACHESIZE="13000"
+OPTIONS="-o ext_path=/storage/datafile:25G"
 # The PORT variable will only be used by memcached.service, not by
 # memcached@xxxxx services, which will use the xxxxx
 PORT="11211"
@@ -59,12 +65,9 @@ RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 WantedBy=multi-user.target
 
 
-#Reload Systemd.
+#Reload Systemd and start systemd
 sudo systemctl daemon-reload
-
-#Start Systemd service.
 sudo systemctl start memcached
-
 sudo systemctl status memcached
 
 
