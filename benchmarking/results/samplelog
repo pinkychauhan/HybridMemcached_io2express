@@ -1,0 +1,411 @@
+Extstore benchmarking log
+
+Before:
+stats
+STAT pid 19245
+STAT uptime 38
+STAT time 1626036779
+STAT version 1.6.9
+STAT libevent 2.0.21-stable
+STAT pointer_size 64
+STAT rusage_user 0.005143
+STAT rusage_system 0.005143
+STAT max_connections 65000
+STAT curr_connections 2
+STAT total_connections 3
+STAT rejected_connections 0
+STAT connection_structures 3
+STAT response_obj_oom 0
+STAT response_obj_count 1
+STAT response_obj_bytes 16384
+STAT read_buf_count 2
+STAT read_buf_bytes 32768
+STAT read_buf_bytes_free 0
+STAT read_buf_oom 0
+STAT reserved_fds 20
+STAT cmd_get 0
+STAT cmd_set 0
+STAT cmd_flush 0
+STAT cmd_touch 0
+STAT cmd_meta 0
+STAT get_hits 0
+STAT get_misses 0
+STAT get_expired 0
+STAT get_flushed 0
+STAT get_extstore 0
+STAT get_aborted_extstore 0
+STAT get_oom_extstore 0
+STAT recache_from_extstore 0
+STAT miss_from_extstore 0
+STAT badcrc_from_extstore 0
+STAT delete_misses 0
+STAT delete_hits 0
+STAT incr_misses 0
+STAT incr_hits 0
+STAT decr_misses 0
+STAT decr_hits 0
+STAT cas_misses 0
+STAT cas_hits 0
+STAT cas_badval 0
+STAT touch_hits 0
+STAT touch_misses 0
+STAT auth_cmds 0
+STAT auth_errors 0
+STAT bytes_read 7
+STAT bytes_written 0
+STAT limit_maxbytes 13631488
+STAT accepting_conns 1
+STAT listen_disabled_num 0
+STAT time_in_listen_disabled_us 0
+STAT threads 4
+STAT conn_yields 0
+STAT hash_power_level 16
+STAT hash_bytes 524288
+STAT hash_is_expanding 0
+STAT slab_reassign_rescues 0
+STAT slab_reassign_chunk_rescues 0
+STAT slab_reassign_evictions_nomem 0
+STAT slab_reassign_inline_reclaim 0
+STAT slab_reassign_busy_items 0
+STAT slab_reassign_busy_deletes 0
+STAT slab_reassign_running 0
+STAT slabs_moved 0
+STAT lru_crawler_running 0
+STAT lru_crawler_starts 1
+STAT lru_maintainer_juggles 86
+STAT malloc_fails 0
+STAT log_worker_dropped 0
+STAT log_worker_written 0
+STAT log_watcher_skipped 0
+STAT log_watcher_sent 0
+STAT extstore_compact_lost 0
+STAT extstore_compact_rescues 0
+STAT extstore_compact_skipped 0
+STAT extstore_page_allocs 0
+STAT extstore_page_evictions 0
+STAT extstore_page_reclaims 0
+STAT extstore_pages_free 319
+STAT extstore_pages_used 1
+STAT extstore_objects_evicted 0
+STAT extstore_objects_read 0
+STAT extstore_objects_written 0
+STAT extstore_objects_used 0
+STAT extstore_bytes_evicted 0
+STAT extstore_bytes_written 0
+STAT extstore_bytes_read 0
+STAT extstore_bytes_used 0
+STAT extstore_bytes_fragmented 67108864
+STAT extstore_limit_maxbytes 21474836480
+STAT extstore_io_queue 0
+STAT unexpected_napi_ids 0
+STAT round_robin_fallback 0
+STAT bytes 0
+STAT curr_items 0
+STAT total_items 0
+STAT slab_global_page_pool 13
+STAT expired_unfetched 0
+STAT evicted_unfetched 0
+STAT evicted_active 0
+STAT evictions 0
+STAT reclaimed 0
+STAT crawler_reclaimed 0
+STAT crawler_items_checked 0
+STAT lrutail_reflocked 0
+STAT moves_to_cold 0
+STAT moves_to_warm 0
+STAT moves_within_lru 0
+STAT direct_reclaims 0
+STAT lru_bumps_dropped 0
+END
+
+
+[root@ip-172-31-33-142 ec2-user]# memaslap -s 172.31.34.67:11211 -T 2 -c 128 -t 30m
+servers : 172.31.34.67:11211
+threads count: 2
+concurrency: 128
+run time: 1800s
+windows size: 10k
+set proportion: set_prop=0.10
+get proportion: get_prop=0.90
+cmd_get: 239781186
+cmd_set: 26642424
+get_misses: 2386
+written_bytes: 46224542230
+read_bytes: 266367488262
+object_bytes: 28986957312
+
+Run time: 1800.1s Ops: 266423610 TPS: 148004 Net_rate: 165.6M/s
+
+
+stats
+STAT pid 23104
+STAT uptime 4965
+STAT time 1626050980
+STAT version 1.6.9
+STAT libevent 2.0.21-stable
+STAT pointer_size 64
+STAT rusage_user 1009.289361
+STAT rusage_system 2592.183667
+STAT max_connections 65000
+STAT curr_connections 2
+STAT total_connections 131
+STAT rejected_connections 0
+STAT connection_structures 131
+STAT response_obj_oom 0
+STAT response_obj_count 1
+STAT response_obj_bytes 65536
+STAT read_buf_count 8
+STAT read_buf_bytes 131072
+STAT read_buf_bytes_free 49152
+STAT read_buf_oom 0
+STAT reserved_fds 20
+STAT cmd_get 239781068
+STAT cmd_set 26642414
+STAT cmd_flush 0
+STAT cmd_touch 0
+STAT cmd_meta 0
+STAT get_hits 239778682
+STAT get_misses 2386
+STAT get_expired 0
+STAT get_flushed 0
+STAT get_extstore 0
+STAT get_aborted_extstore 0
+STAT get_oom_extstore 0
+STAT recache_from_extstore 0
+STAT miss_from_extstore 0
+STAT badcrc_from_extstore 0
+STAT delete_misses 0
+STAT delete_hits 0
+STAT incr_misses 0
+STAT incr_hits 0
+STAT decr_misses 0
+STAT decr_hits 0
+STAT cas_misses 0
+STAT cas_hits 0
+STAT cas_badval 0
+STAT touch_hits 0
+STAT touch_misses 0
+STAT auth_cmds 0
+STAT auth_errors 0
+STAT bytes_read 46224542286
+STAT bytes_written 266367509463
+STAT limit_maxbytes 13631488000
+STAT accepting_conns 1
+STAT listen_disabled_num 0
+STAT time_in_listen_disabled_us 0
+STAT threads 4
+STAT conn_yields 0
+STAT hash_power_level 25
+STAT hash_bytes 268435456
+STAT hash_is_expanding 0
+STAT slab_reassign_rescues 6571274
+STAT slab_reassign_chunk_rescues 0
+STAT slab_reassign_evictions_nomem 294423
+STAT slab_reassign_inline_reclaim 588
+STAT slab_reassign_busy_items 1341
+STAT slab_reassign_busy_deletes 0
+STAT slab_reassign_running 0
+STAT slabs_moved 8655
+STAT lru_crawler_running 0
+STAT lru_crawler_starts 49
+STAT lru_maintainer_juggles 1369656
+STAT malloc_fails 0
+STAT log_worker_dropped 0
+STAT log_worker_written 0
+STAT log_watcher_skipped 0
+STAT log_watcher_sent 0
+STAT extstore_compact_lost 0
+STAT extstore_compact_rescues 0
+STAT extstore_compact_skipped 0
+STAT extstore_page_allocs 295
+STAT extstore_page_evictions 0
+STAT extstore_page_reclaims 0
+STAT extstore_pages_free 104
+STAT extstore_pages_used 296
+STAT extstore_objects_evicted 0
+STAT extstore_objects_read 0
+STAT extstore_objects_written 17208082
+STAT extstore_objects_used 17208082
+STAT extstore_bytes_evicted 0
+STAT extstore_bytes_written 19737670054
+STAT extstore_bytes_read 0
+STAT extstore_bytes_used 19737670054
+STAT extstore_bytes_fragmented 126553690
+STAT extstore_limit_maxbytes 26843545600
+STAT extstore_io_queue 0
+STAT unexpected_napi_ids 0
+STAT round_robin_fallback 0
+STAT bytes 30221145677
+STAT curr_items 26347991
+STAT total_items 50421770
+STAT slab_global_page_pool 73
+STAT expired_unfetched 0
+STAT evicted_unfetched 0
+STAT evicted_active 0
+STAT evictions 0
+STAT reclaimed 0
+STAT crawler_reclaimed 0
+STAT crawler_items_checked 188182854
+STAT lrutail_reflocked 92
+STAT moves_to_cold 48660125
+STAT moves_to_warm 32787142
+STAT moves_within_lru 21630096
+STAT direct_reclaims 0
+STAT lru_bumps_dropped 0
+END
+
+[root@ip-172-31-34-67 storage]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        7.7G     0  7.7G   0% /dev
+tmpfs           7.7G     0  7.7G   0% /dev/shm
+tmpfs           7.7G  472K  7.7G   1% /run
+tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p1  8.0G  1.9G  6.2G  24% /
+tmpfs           1.6G     0  1.6G   0% /run/user/1000
+/dev/nvme1n1     30G   19G  9.5G  67% /storage
+
+
+memaslap -s 172.31.34.67:11211 -T 2 -c 128 -t 30m
+#
+servers : 172.31.34.67:11211
+threads count: 2
+concurrency: 128
+run time: 1800s
+windows size: 10k
+set proportion: set_prop=0.10
+get proportion: get_prop=0.90
+cmd_get: 239781186
+cmd_set: 26642424
+get_misses: 2386
+written_bytes: 46224542230
+read_bytes: 266367488262
+object_bytes: 28986957312
+
+Run time: 1800.1s Ops: 266423610 TPS: 148004 Net_rate: 165.6M/s
+
+[root@ip-172-31-34-67 storage]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        7.7G     0  7.7G   0% /dev
+tmpfs           7.7G     0  7.7G   0% /dev/shm
+tmpfs           7.7G  472K  7.7G   1% /run
+tmpfs           7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p1  8.0G  1.9G  6.2G  24% /
+tmpfs           1.6G     0  1.6G   0% /run/user/1000
+/dev/nvme1n1     30G   25G  3.0G  90% /storage
+
+stats
+STAT pid 23443
+STAT uptime 2833
+STAT time 1626053897
+STAT version 1.6.9
+STAT libevent 2.0.21-stable
+STAT pointer_size 64
+STAT rusage_user 768.635545
+STAT rusage_system 979.304879
+STAT max_connections 65000
+STAT curr_connections 2
+STAT total_connections 131
+STAT rejected_connections 0
+STAT connection_structures 131
+STAT response_obj_oom 0
+STAT response_obj_count 1
+STAT response_obj_bytes 65536
+STAT read_buf_count 8
+STAT read_buf_bytes 131072
+STAT read_buf_bytes_free 49152
+STAT read_buf_oom 0
+STAT reserved_fds 20
+STAT cmd_get 0
+STAT cmd_set 62355882
+STAT cmd_flush 0
+STAT cmd_touch 0
+STAT cmd_meta 0
+STAT get_hits 0
+STAT get_misses 0
+STAT get_expired 0
+STAT get_flushed 0
+STAT get_extstore 0
+STAT get_aborted_extstore 0
+STAT get_oom_extstore 0
+STAT recache_from_extstore 0
+STAT miss_from_extstore 0
+STAT badcrc_from_extstore 0
+STAT delete_misses 0
+STAT delete_hits 0
+STAT incr_misses 0
+STAT incr_hits 0
+STAT decr_misses 0
+STAT decr_hits 0
+STAT cas_misses 0
+STAT cas_hits 0
+STAT cas_badval 0
+STAT touch_hits 0
+STAT touch_misses 0
+STAT auth_cmds 0
+STAT auth_errors 0
+STAT bytes_read 527468405866
+STAT bytes_written 498856183
+STAT limit_maxbytes 13631488000
+STAT accepting_conns 1
+STAT listen_disabled_num 0
+STAT time_in_listen_disabled_us 0
+STAT threads 4
+STAT conn_yields 0
+STAT hash_power_level 24
+STAT hash_bytes 134217728
+STAT hash_is_expanding 0
+STAT slab_reassign_rescues 38857094
+STAT slab_reassign_chunk_rescues 0
+STAT slab_reassign_evictions_nomem 17910965
+STAT slab_reassign_inline_reclaim 461069
+STAT slab_reassign_busy_items 70932
+STAT slab_reassign_busy_deletes 0
+STAT slab_reassign_running 0
+STAT slabs_moved 372465
+STAT lru_crawler_running 0
+STAT lru_crawler_starts 32
+STAT lru_maintainer_juggles 2332033
+STAT malloc_fails 0
+STAT log_worker_dropped 0
+STAT log_worker_written 0
+STAT log_watcher_skipped 0
+STAT log_watcher_sent 0
+STAT extstore_compact_lost 28
+STAT extstore_compact_rescues 27522
+STAT extstore_compact_skipped 0
+STAT extstore_page_allocs 4347
+STAT extstore_page_evictions 3916
+STAT extstore_page_reclaims 3949
+STAT extstore_pages_free 1
+STAT extstore_pages_used 399
+STAT extstore_objects_evicted 30886459
+STAT extstore_objects_read 129
+STAT extstore_objects_written 34282781
+STAT extstore_objects_used 3129204
+STAT extstore_bytes_evicted 262565787959
+STAT extstore_bytes_written 291437921281
+STAT extstore_bytes_read 541065216
+STAT extstore_bytes_used 26601363204
+STAT extstore_bytes_fragmented 175073532
+STAT extstore_limit_maxbytes 26843545600
+STAT extstore_io_queue 0
+STAT unexpected_napi_ids 0
+STAT round_robin_fallback 0
+STAT bytes 36984646123
+STAT curr_items 4350623
+STAT total_items 135468235
+STAT slab_global_page_pool 1588
+STAT expired_unfetched 30041676
+STAT evicted_unfetched 10052618
+STAT evicted_active 0
+STAT evictions 10052618
+STAT reclaimed 0
+STAT crawler_reclaimed 30041676
+STAT crawler_items_checked 54432253
+STAT lrutail_reflocked 0
+STAT moves_to_cold 87963979
+STAT moves_to_warm 0
+STAT moves_within_lru 0
+STAT direct_reclaims 10053018
+STAT lru_bumps_dropped 0
+END

@@ -30,3 +30,5 @@ sudo make install
 
 # Run memaslap 
 ./clients/memaslap -s 127.0.0.1:11211 -t 20s
+
+
